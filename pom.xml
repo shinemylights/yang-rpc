@@ -11,6 +11,8 @@
     <modules>
         <module>common</module>
         <module>provider-easy</module>
+        <module>consumer-easy</module>
+        <module>yang-rpc-easy</module>
     </modules>
 
     <properties>

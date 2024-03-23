@@ -13,6 +13,7 @@
         <module>provider-easy</module>
         <module>consumer-easy</module>
         <module>yang-rpc-easy</module>
+        <module>yang-rpc-core</module>
     </modules>
 
     <properties>

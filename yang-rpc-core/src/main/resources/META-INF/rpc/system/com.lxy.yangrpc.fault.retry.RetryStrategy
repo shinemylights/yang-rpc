@@ -1,0 +1,2 @@
+no=com.lxy.yangrpc.fault.retry.NoRetryStrategy
+fixedInterval=com.lxy.yangrpc.fault.retry.FixedIntervalRetryStrategy

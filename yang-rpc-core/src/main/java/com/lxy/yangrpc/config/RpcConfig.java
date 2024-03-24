@@ -1,6 +1,7 @@
 package com.lxy.yangrpc.config;
 
 
+import com.lxy.yangrpc.serializer.SerializerKeys;
 import lombok.Data;
 
 /**
@@ -12,7 +13,7 @@ public class RpcConfig {
     /**
      * 名称
      */
-    private String name = "yu-rpc";
+    private String name = "yang-rpc";
 
     /**
      * 版本号
@@ -29,11 +30,11 @@ public class RpcConfig {
      */
     private Integer serverPort = 8080;
 
-    // /**
-    //  * 序列化器
-    //  */
-    // private String serializer = SerializerKeys.JDK;
-    //
+    /**
+     * 序列化器
+     */
+    private String serializer = SerializerKeys.JDK;
+
     // /**
     //  * 负载均衡器
     //  */
@@ -53,9 +54,9 @@ public class RpcConfig {
      * 模拟调用
      */
     private boolean mock = false;
-    //
-    // /**
-    //  * 注册中心配置
-    //  */
-    // private RegistryConfig registryConfig = new RegistryConfig();
+
+    /**
+     * 注册中心配置
+     */
+    private RegistryConfig registryConfig = new RegistryConfig();
 }

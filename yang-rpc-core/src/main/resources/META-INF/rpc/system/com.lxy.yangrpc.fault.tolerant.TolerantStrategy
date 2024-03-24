@@ -1,0 +1,4 @@
+failBack=com.lxy.yangrpc.fault.tolerant.FailBackTolerantStrategy
+failFast=com.lxy.yangrpc.fault.tolerant.FailFastTolerantStrategy
+failOver=com.lxy.yangrpc.fault.tolerant.FailOverTolerantStrategy
+failSafe=com.lxy.yangrpc.fault.tolerant.FailSafeTolerantStrategy

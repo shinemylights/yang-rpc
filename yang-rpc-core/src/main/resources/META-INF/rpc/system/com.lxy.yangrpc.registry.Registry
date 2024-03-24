@@ -1,0 +1,2 @@
+etcd=com.lxy.yangrpc.registry.EtcdRegistry
+zookeeper=com.lxy.yangrpc.registry.ZooKeeperRegistry

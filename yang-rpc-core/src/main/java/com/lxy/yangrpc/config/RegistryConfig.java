@@ -1,5 +1,6 @@
 package com.lxy.yangrpc.config;
 
+import com.lxy.yangrpc.registry.RegistryKeys;
 import lombok.Data;
 
 /**
@@ -11,7 +12,7 @@ public class RegistryConfig {
     /**
      * 注册中心类别
      */
-    // private String registry = RegistryKeys.ETCD;
+    private String registry = RegistryKeys.ETCD;
 
     /**
      * 注册中心地址

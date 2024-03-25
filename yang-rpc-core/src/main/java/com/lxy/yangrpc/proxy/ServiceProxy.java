@@ -6,6 +6,8 @@ import cn.hutool.http.HttpResponse;
 import com.lxy.yangrpc.RpcApplication;
 import com.lxy.yangrpc.config.RpcConfig;
 import com.lxy.yangrpc.constant.RpcConstant;
+import com.lxy.yangrpc.fault.retry.RetryStrategy;
+import com.lxy.yangrpc.fault.retry.RetryStrategyFactory;
 import com.lxy.yangrpc.loadbalancer.LoadBalancer;
 import com.lxy.yangrpc.loadbalancer.LoadBalancerFactory;
 import com.lxy.yangrpc.model.RpcRequest;
@@ -79,8 +81,13 @@ public class ServiceProxy implements InvocationHandler {
             //     // 反序列化
             //     RpcResponse rpcResponse = serializer.deserialize(result, RpcResponse.class);
 
-            //发送TCP请求
-            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            //重试机制
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(() ->
+                    //发送TCP请求
+                    VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo)
+            );
+
             return rpcResponse.getData();
 
         } catch (IOException e) {

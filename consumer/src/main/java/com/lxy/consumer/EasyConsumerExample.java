@@ -26,9 +26,9 @@ public class EasyConsumerExample {
             System.out.println("user == null");
         }
 
-        System.out.println(userService.getUser(user).getName());
-        System.out.println(userService.getUser(user).getName());
-        System.out.println(userService.getUser(user).getName());
+        // System.out.println(userService.getUser(user).getName());
+        // System.out.println(userService.getUser(user).getName());
+        // System.out.println(userService.getUser(user).getName());
 
     }
 }

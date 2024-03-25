@@ -1,6 +1,7 @@
 package com.lxy.yangrpc.config;
 
 
+import com.lxy.yangrpc.fault.retry.RetryStrategyKeys;
 import com.lxy.yangrpc.loadbalancer.LoadBalancerKeys;
 import com.lxy.yangrpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -41,11 +42,11 @@ public class RpcConfig {
      */
     private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
 
-    // /**
-    //  * 重试策略
-    //  */
-    // private String retryStrategy = RetryStrategyKeys.NO;
-    //
+    /**
+     * 重试策略
+     */
+    private String retryStrategy = RetryStrategyKeys.NO;
+
     // /**
     //  * 容错策略
     //  */

@@ -30,6 +30,7 @@ public class VertxTcpClient {
      * @throws ExecutionException
      */
     public static RpcResponse doRequest(RpcRequest rpcRequest, ServiceMetaInfo serviceMetaInfo) throws InterruptedException, ExecutionException {
+
         // 发送 TCP 请求
         Vertx vertx = Vertx.vertx();
         NetClient netClient = vertx.createNetClient();
@@ -62,6 +63,7 @@ public class VertxTcpClient {
                         throw new RuntimeException("协议消息编码错误");
                     }
 
+
                     // 接收响应
                     TcpBufferHandlerWrapper bufferHandlerWrapper = new TcpBufferHandlerWrapper(
                             buffer -> {
@@ -77,6 +79,7 @@ public class VertxTcpClient {
                     socket.handler(bufferHandlerWrapper);
 
                 });
+
 
         RpcResponse rpcResponse = responseFuture.get();
         // 记得关闭连接

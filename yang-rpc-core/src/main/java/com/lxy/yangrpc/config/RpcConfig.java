@@ -2,6 +2,7 @@ package com.lxy.yangrpc.config;
 
 
 import com.lxy.yangrpc.fault.retry.RetryStrategyKeys;
+import com.lxy.yangrpc.fault.tolerant.TolerantStrategyKeys;
 import com.lxy.yangrpc.loadbalancer.LoadBalancerKeys;
 import com.lxy.yangrpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -47,11 +48,11 @@ public class RpcConfig {
      */
     private String retryStrategy = RetryStrategyKeys.NO;
 
-    // /**
-    //  * 容错策略
-    //  */
-    // private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
-    //
+    /**
+     * 容错策略
+     */
+    private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
+
     /**
      * 模拟调用
      */

@@ -8,6 +8,8 @@ import com.lxy.yangrpc.config.RpcConfig;
 import com.lxy.yangrpc.constant.RpcConstant;
 import com.lxy.yangrpc.fault.retry.RetryStrategy;
 import com.lxy.yangrpc.fault.retry.RetryStrategyFactory;
+import com.lxy.yangrpc.fault.tolerant.TolerantStrategy;
+import com.lxy.yangrpc.fault.tolerant.TolerantStrategyFactory;
 import com.lxy.yangrpc.loadbalancer.LoadBalancer;
 import com.lxy.yangrpc.loadbalancer.LoadBalancerFactory;
 import com.lxy.yangrpc.model.RpcRequest;
@@ -81,12 +83,19 @@ public class ServiceProxy implements InvocationHandler {
             //     // 反序列化
             //     RpcResponse rpcResponse = serializer.deserialize(result, RpcResponse.class);
 
-            //重试机制
-            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
-            RpcResponse rpcResponse = retryStrategy.doRetry(() ->
-                    //发送TCP请求
-                    VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo)
-            );
+
+            RpcResponse rpcResponse;
+            try {
+                // 使用重试机制
+                RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+                rpcResponse = retryStrategy.doRetry(() ->
+                        VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo)
+                );
+            } catch (Exception e) {
+                // 容错机制
+                TolerantStrategy tolerantStrategy = TolerantStrategyFactory.getInstance(rpcConfig.getTolerantStrategy());
+                rpcResponse = tolerantStrategy.doTolerant(null, e);
+            }
 
             return rpcResponse.getData();
 

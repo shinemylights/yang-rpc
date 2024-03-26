@@ -3,6 +3,7 @@ package com.lxy.consumer;
 
 import com.lxy.common.model.User;
 import com.lxy.common.service.UserService;
+import com.lxy.yangrpc.bootstrap.ConsumerBootstrap;
 import com.lxy.yangrpc.proxy.ServiceProxyFactory;
 
 /**
@@ -14,6 +15,10 @@ public class EasyConsumerExample {
     public static void main(String[] args) {
         // 静态代理
         //UserService userService = new UserServiceProxy();
+
+        //服务提供者初始化
+        ConsumerBootstrap. init() ;
+
         // 动态代理
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);
         User user = new User();
